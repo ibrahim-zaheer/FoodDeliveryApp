@@ -9,6 +9,10 @@ import Contact from './screens/Contact';
 import Navigation from './components/Navigation';
 //install this to use react router dom
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import '../node_modules/bootstrap-dark-5/dist/css/bootstrap-dark.min.css';
+import '../node_modules/bootstrap/dist/js/bootstrap.bundle';
+import '../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js';
+
 
 
 
