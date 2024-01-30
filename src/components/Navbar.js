@@ -16,6 +16,7 @@ export default function Navbar() {
         <Link class="nav-link" to="/Contact">Contact</Link>
       </li>
       
+      
     </ul>
   </div>
 </nav>

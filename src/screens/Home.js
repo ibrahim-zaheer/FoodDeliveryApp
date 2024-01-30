@@ -12,8 +12,8 @@ export default function Home() {
       <Navbar />
       <div>
         <div><Carousal/></div>
-        <Card/>
-        <Card/>
+      <div className='m-3'><Card/></div>
+        {/* <Card/> */}
       </div>
       <Footer />
 
