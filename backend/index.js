@@ -18,11 +18,21 @@ const port = 5000;
 const mongoDB = require('./db');
 
 mongoDB();
-
+app.use((req,res,next)=>{
+res.setHeader("Access-Control-Allow-Origin","http://localhost:3000");
+res.header(
+  "Access-Control-Allow-Headers",
+  "Origin, X-Requested-With\,Content-Type,Accept"
+);
+next();
+});
+// add this code work same as urls.py in django it will send anythinh starting api to CreateUser
+app.use(express.json())
 app.get('/', (req, res) => {
   res.send('How are you!');
 });
 
+app.use('/api',require("./Routes/CreateUser"))
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

@@ -15,6 +15,12 @@ export default function Navbar() {
       <li class="nav-item">
         <Link class="nav-link" to="/Contact">Contact</Link>
       </li>
+      <li class="nav-item">
+        <Link class="nav-link" to="/Signup">Signup</Link>
+      </li>
+      <li class="nav-item">
+        <Link class="nav-link" to="/Signup">Hello</Link>
+      </li>
       
       
     </ul>
