@@ -1,12 +1,17 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { useDispatchCart,useCart } from './ContextReducer';
 export default function Card(props) {
   // when we are taking options from mongo db then we will turn it into key value pairs like this
   let options = props.options;
   let priceOptions = Object.keys(options);
   let foodItem = props.foodItems;
-  const handleAddToCart= ()=>{
-
+  let data = useCart();
+  let dispatch = useDispatchCart();
+ const [qty, setqty] = useState(1);
+ const [size, setsize] = useState("");
+  const handleAddToCart= async()=>{
+  await dispatch({type:"ADD",id: props.foodItem._id,name: props.foodItem.name,price:props.finalPrice,qty:qty,size:size,img:props.foodItem.img})
+  console.log(dispatch)
   }
   return (
     <div>
@@ -21,14 +26,14 @@ export default function Card(props) {
           <h5 className="card-title">{props.foodItem.name}</h5>
           <p className="card-text">Some quick example</p>
           <div className='container w-100'></div>
-          <select className='m-2 h-200  bg-success'>
+          <select className='m-2 h-200  bg-success' onChange={(e)=>setqty(e.target.value)}>
             {Array.from(Array(6), (e, i) => {
               return (
                 <option key={i + 1} value={i + 1}>{i + 1}</option>
               )
             })}
           </select>
-          <select className='m-2 h-200 bg-success'>
+          <select className='m-2 h-200 bg-success' onChange={(e)=>setsize(e.target.value)}>
 {/* // write this display option onw by one for each key */}
             {priceOptions.map((data)=>{
               return <option value={data} key={data}>{data}</option>
