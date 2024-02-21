@@ -1,13 +1,24 @@
 import React from 'react'
+import { useDispatchCart,useCart } from './ContextReducer';
+export default function Card(props) {
+  // when we are taking options from mongo db then we will turn it into key value pairs like this
+  let options = props.options;
+  let priceOptions = Object.keys(options);
+  let foodItem = props.foodItems;
+  const handleAddToCart= ()=>{
 
-export default function Card() {
+  }
   return (
     <div>
 
 <div className="card mt-3" style={{ "width": "20rem", "height": "300px" }}>
         {/* <img src="https://source.unsplash.com/random/10×10"alt="..." width={200}/> */}
+        {/* the arguments added in style help us to to show image with different sizes in a fix size */}
+        <img src={props.foodItem.img} alt="" style={{height:"100px",objectFit:"fill", width:"100px"}}/>
+        
         <div className="card-body">
-          <h5 className="card-title">Card title</h5>
+          
+          <h5 className="card-title">{props.foodItem.name}</h5>
           <p className="card-text">Some quick example</p>
           <div className='container w-100'></div>
           <select className='m-2 h-200  bg-success'>
@@ -18,13 +29,17 @@ export default function Card() {
             })}
           </select>
           <select className='m-2 h-200 bg-success'>
-
-            <option value={"Half"}>Half</option><option value={"Full"}>Full</option>
+{/* // write this display option onw by one for each key */}
+            {priceOptions.map((data)=>{
+              return <option value={data} key={data}>{data}</option>
+            })}
 
           </select>
           <div className='d-inline h-100 fs-5'>
 Total Price
           </div>
+        <hr></hr>  
+        <button className='btn btn-success justify-center ms-2' onClick={handleAddToCart}>Add to Card</button>
         
         </div>
       </div>
