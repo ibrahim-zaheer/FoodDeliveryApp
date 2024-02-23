@@ -8,7 +8,7 @@ const reducer = (state,action)=>{
 switch(action.type){
     case "ADD":
         //values of action.id depends on what we are calling in Card.js
-        return [...state,{id:action.id,name:action.name,size:action.size,price:action.price,qty:action.qty,img:action.img}]
+        return [...state,{id:action.id,name:action.name,price:action.price,qty:action.qty,size:action.size,img:action.img}]
     default:
         console.log("Error in reducer")    
 }

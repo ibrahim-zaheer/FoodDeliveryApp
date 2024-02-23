@@ -4,6 +4,7 @@ import Footer from '../components/Footer'
 import Card from '../components/Card'
 // import Carousal from '../components/Carousal'
 import ImageSliderForCarasoul from '../components/ImageSliderForCarasoul'
+import { Cartprovider } from '../components/ContextReducer'
 
 // import  from '../components/Carousal'
 
@@ -125,6 +126,7 @@ useEffect(()=>{
           &&(item.name.toLowerCase().includes(search.toLocaleLowerCase()))}).map(filterItems => {
             return (
               <div key={filterItems._id} className='col-12 col-md-6 col-lg-3'>
+              
                 <Card foodItem = {filterItems} options= {filterItems.options[0]} ></Card>
                 
               </div>

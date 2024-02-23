@@ -1,18 +1,27 @@
-import React,{useState} from 'react'
+import React,{useEffect, useRef, useState} from 'react'
 import { useDispatchCart,useCart } from './ContextReducer';
 export default function Card(props) {
   // when we are taking options from mongo db then we will turn it into key value pairs like this
   let options = props.options;
   let priceOptions = Object.keys(options);
   let foodItem = props.foodItems;
+  // we use for referencing or default value of the price
+  const priceRef = useRef();
   let data = useCart();
   let dispatch = useDispatchCart();
  const [qty, setqty] = useState(1);
  const [size, setsize] = useState("");
   const handleAddToCart= async()=>{
-  await dispatch({type:"ADD",id: props.foodItem._id,name: props.foodItem.name,price:props.finalPrice,qty:qty,size:size,img:props.foodItem.img})
-  console.log(dispatch)
+  await dispatch({type:"ADD",id: props.foodItem._id,name: props.foodItem.name,price:finalPrice,qty:qty,size:size,img:props.foodItem.img})
+  await console.log(data)
   }
+  let finalPrice = qty * parseInt(options[size])
+
+
+  //now we use useEffect so when page is loaded value is shown there
+  useEffect(()=>{
+    setsize(priceRef.current.value)
+  },[])
   return (
     <div>
 
@@ -33,7 +42,7 @@ export default function Card(props) {
               )
             })}
           </select>
-          <select className='m-2 h-200 bg-success' onChange={(e)=>setsize(e.target.value)}>
+          <select className='m-2 h-200 bg-success' ref={priceRef} onChange={(e)=>setsize(e.target.value)}>
 {/* // write this display option onw by one for each key */}
             {priceOptions.map((data)=>{
               return <option value={data} key={data}>{data}</option>
@@ -41,7 +50,7 @@ export default function Card(props) {
 
           </select>
           <div className='d-inline h-100 fs-5'>
-Total Price
+${finalPrice == null?0:finalPrice}
           </div>
         <hr></hr>  
         <button className='btn btn-success justify-center ms-2' onClick={handleAddToCart}>Add to Card</button>
